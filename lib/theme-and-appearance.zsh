@@ -16,7 +16,7 @@ then
     # otherwise, leave ls as is, because MacOS's ls doesn't support -G
     gls --color -d . &>/dev/null 2>&1 && alias ls='gls --color=tty'
     gdircolors . &>/dev/null 2>&1 && alias dircolors='gdircolors'
-    eval $(dircolors ~/.dir_colors)
+    eval $(dircolors dir_colors)
     zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
   elif [[ "$(uname -s)" == "OpenBSD" ]]; then
     # On OpenBSD, "gls" (ls from GNU coreutils) and "colorls" (ls from base,
