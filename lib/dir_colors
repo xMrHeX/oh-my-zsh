@@ -88,7 +88,7 @@ EXEC 01;32
 
 # USER DEFINED
 
-# Archive files
+# Archive files & Packages
 .tar 01;33 # archives or compressed (bright red)
 .tgz 01;33
 .tar.gz 01;33
@@ -104,6 +104,7 @@ EXEC 01;32
 .rpm 01;33
 .jar 01;33
 .rar 01;33
+.pkg 00;33
 
 # Disk Images
 .iso 00;35
@@ -159,6 +160,7 @@ EXEC 01;32
 .sh  01;33
 .rb  01;33
 .json 01;33
+.scpt 01;33
 .o   33
 .so  33
 
