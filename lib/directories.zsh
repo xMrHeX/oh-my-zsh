@@ -29,6 +29,20 @@ alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
 
+alias l='ls'
+alias ll='ls -alhF'
+alias lll='ls -alhF'
+alias sl='ls' # often screw this up
+alias lt='ls -althF'
+alias la='ls -A'
+alias lss='ls -alShF'
+alias lsn='ls -nalhF'
+alias l1='ls -a1'
+
+#   lr:  Full Recursive Directory Listing
+#   ------------------------------------------
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+
 # Push and pop directories on directory stack
 alias pu='pushd'
 alias po='popd'

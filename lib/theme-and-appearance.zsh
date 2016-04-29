@@ -1,6 +1,7 @@
 # ls colors
 autoload -U colors && colors
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
+#export LSCOLORS="Gxfxcxdxbxegedabagacad"
+#export LSCOLORS=gxfxGxdxCxhFHdabagacad
 
 # Enable ls colors
 if [ "$DISABLE_LS_COLORS" != "true" ]
@@ -10,10 +11,17 @@ then
     # On NetBSD, test if "gls" (GNU ls) is installed (this one supports colors);
     # otherwise, leave ls as is, because NetBSD's ls doesn't support -G
     gls --color -d . &>/dev/null 2>&1 && alias ls='gls --color=tty'
+  elif [[ "$(uname -s)" == "Darwin" ]]; then
+    # On MacOS, test if "gls" (GNU ls) and gdircolors (GNU dircolors) are installed
+    # otherwise, leave ls as is, because MacOS's ls doesn't support -G
+    gls --color -d . &>/dev/null 2>&1 && alias ls='gls --color=tty'
+    gdircolors . &>/dev/null 2>&1 && alias dircolors='gdircolors'
+    eval $(dircolors ~/.dir_colors)
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
   elif [[ "$(uname -s)" == "OpenBSD" ]]; then
-    # On OpenBSD, "gls" (ls from GNU coreutils) and "colorls" (ls from base, 
-    # with color and multibyte support) are available from ports.  "colorls"  
-    # will be installed on purpose and can't be pulled in by installing 
+    # On OpenBSD, "gls" (ls from GNU coreutils) and "colorls" (ls from base,
+    # with color and multibyte support) are available from ports.  "colorls"
+    # will be installed on purpose and can't be pulled in by installing
     # coreutils, so prefer it to "gls".
     gls --color -d . &>/dev/null 2>&1 && alias ls='gls --color=tty'
     colorls -G -d . &>/dev/null 2>&1 && alias ls='colorls -G'
