@@ -25,6 +25,8 @@ then
     colorls -G -d . &>/dev/null 2>&1 && alias ls='colorls -G'
   else
     ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
+    eval $(dircolors $ZSH/lib/dir_colors256)
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
   fi
 fi
 
